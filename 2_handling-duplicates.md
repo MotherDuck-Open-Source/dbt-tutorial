@@ -51,7 +51,7 @@ We can now easily load data from multiple source files into MotherDuck!
 ```{admonition} Exercise 2.1
 Update at least one model to pull in even more data from s3.
 
-hint: consider this type of pattern in your read_csv. _stocks/**/ticker_history_*.csv_
+hint: consider this type of pattern in your read_csv: stocks/**/ticker_history_*.csv
 ```
 
 ## De-duping with a window function
@@ -76,9 +76,11 @@ In this example, we partition the data by a unique key and order it by a timesta
 
 ## A better way to De-duplicate data: ARG_MAX()
 
-DuckDB contains a function called [ARG_MAX()](https://duckdb.org/docs/sql/functions/aggregates.html#arg_maxarg-val), which allows users to pass a table reference and a numeric column (including dates & timestamps) and returns a single row as a `STRUCT`. Since it returns this datatype, we have to also use `UNNEST()` in 
+DuckDB contains a function called [ARG_MAX()](https://duckdb.org/docs/sql/functions/aggregates.html#arg_maxarg-val), which allows users to pass a table reference and a numeric column (including dates & timestamps) and returns a single row as a [`STRUCT`](https://www.w3schools.com/c/c_structs.php). Since it returns this datatype, we have to also use [`UNNEST()`](https://duckdb.org/docs/sql/query_syntax/unnest.html) in order to get a single row from the `ARG_MAX()` function.
 
 ```{admonition} Exercise 2.2
-Implement ARG_MAX() on top of your models in the `prep` folder
+Implement ARG_MAX() on top of your models in the `prep` folder.
+
+hint: you will need to find a way to get the timestamp from the filename (or use the `read_blob()` function to enrich your dataset.)
 ```
 
