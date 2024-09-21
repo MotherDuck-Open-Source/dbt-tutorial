@@ -61,7 +61,7 @@ In addition to reading CSV files, DuckDB can read [many other file types](https:
 
 It can also read list of files and file meta-data with the `glob()` and [`read_text()`](https://duckdb.org/docs/guides/file_formats/read_file) functions.
 
-## building your first dbt model
+## Building your first dbt model
 
 You can add a model to dbt in your `/models/raw` folder. Create a new file called `{my_file}.sql`.
 
@@ -81,6 +81,6 @@ Once this has been completed, check back into the MotherDuck UI - you should see
 Create a model for each file in the `stocks` S3 bucket.
 ```
 
-```{admonition} Exercuse 1.2
+```{admonition} Exercise 1.2
 Write a query using MotherDuck to select the 10 latest rows in the `ticker_history` file for symbol AAPL.
 ```
