@@ -1,0 +1,6 @@
+_build/
+.ipynb_checkpoints/
+scripts/
+.idea
+.DS_Store
+notebooks/*.md
