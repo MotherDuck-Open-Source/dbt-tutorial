@@ -23,7 +23,11 @@ FROM 's3://my-bucket/file.parquet';
 
 For the purpose of this workshop, some sample datasets can be found `s3://us-prd-motherduck-open-datasets/stocks/`. 
 
-A sample of this dataset can be found here.
+```{code-cell}
+!pip install --upgrade duckdb magic-duckdb --quiet
+%load_ext magic_duckdb
+```
+
 ```{code-cell}
 %%dql
 FROM 's3://us-prd-motherduck-open-datasets/stocks/ticker_history_20240920085944.csv' limit 10;
