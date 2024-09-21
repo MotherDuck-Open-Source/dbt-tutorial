@@ -26,7 +26,21 @@ you can find a sample dataset for this on s3...link
 
 Duckdb contains a function for ReadCSV with some params
 
-## building this as a model in dbt
+## Models in dbt
+
+SQL queries in dbt are called "models". 
+
+## Reading other file types
+
+In addition to reading CSV files, DuckDB can read many other file types:
+- JSON
+- Parquet
+- Delta
+- Iceberg
+
+It can also read list of files and file meta-data with the `glob()` and [`read_text()`](https://duckdb.org/docs/guides/file_formats/read_file) functions.
+
+## Exercise - build your own dbt model
 
 You can add a model to dbt in your `/models/raw` folder. Create a new file called `{my_file}.sql`.
 
@@ -41,13 +55,3 @@ Once you have added the model, we have a couple options here.
 Now that your model is confirmed as runnable, you can run `dbt build` from your terminal.
 
 Once this has been completed, check back into the MotherDuck UI - you should see your model. You can then run a simple select against it - `select * from my_model`.
-
-## Reading other file types
-
-In addition to reading CSV files, DuckDB can read many other file types:
-- JSON
-- Parquet
-- Delta
-- Iceberg
-
-It can also read list of files and file meta-data with the `glob()` and `read_text()` functions.
