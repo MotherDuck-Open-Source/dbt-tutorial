@@ -6,7 +6,7 @@ root: README
 chapters:
 - file: setup-instructions
 - file: 1_replicate-from-s3
-# - file: 2_intro-sql-2
+- file: 2_handling-duplicates
 # - file: 3_sql-and-python
 # - file: 4_data-in-the-cloud
 # - file: datasets
