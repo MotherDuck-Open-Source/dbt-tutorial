@@ -4,3 +4,4 @@ scripts/
 .idea
 .DS_Store
 notebooks/*.md
+/book

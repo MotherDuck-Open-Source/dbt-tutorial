@@ -1,0 +1,53 @@
+---
+jupytext:
+  formats: md:myst
+  text_representation:
+    extension: .md
+    format_name: myst
+    format_version: 0.13
+    jupytext_version: 1.11.5
+kernelspec:
+  display_name: Python 3
+  language: python
+  name: python3
+---
+
+# 1. Replicating data into MotherDuck from S3
+
+duckdb has the ability to read from S3 directly. We can simply select directly from files with this.
+
+```sql
+select * from 's3//:{your-bucket}/file_name.csv'
+```
+
+you can find a sample dataset for this on s3...link
+
+## Using ReadCSV and set Parameters
+
+Duckdb contains a function for ReadCSV with some params
+
+## building this as a model in dbt
+
+You can add a model to dbt in your `/models/raw` folder. Create a new file called `{my_file}.sql`.
+
+```sql
+select * from read_csv('s3//:{blablah}/my_file_*.csv', filename = true)
+```
+
+Once you have added the model, we have a couple options here.
+1. Press `Cmd+Enter` to run the file against motherduck. (Ctrl+Enter on Windows)
+2. Run the same query in duckdb CLI or MotherDuck UI.
+   
+Now that your model is confirmed as runnable, you can run `dbt build` from your terminal.
+
+Once this has been completed, check back into the MotherDuck UI - you should see your model. You can then run a simple select against it - `select * from my_model`.
+
+## Reading other file types
+
+In addition to reading CSV files, DuckDB can read many other file types:
+- JSON
+- Parquet
+- Delta
+- Iceberg
+
+It can also read list of files and file meta-data with the `glob()` and `read_text()` functions.
