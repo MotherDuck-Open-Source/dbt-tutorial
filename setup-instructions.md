@@ -35,17 +35,12 @@ To get started with the tutorial, you'll need a GitHub Codespace. The template c
         dev:
           type: duckdb
           schema: main
-          path: md:stocks_dev
-          threads: 1
-        prod:
-          type: duckdb
-          schema: main
-          path: 'md:stocks'
+          path: md:{my_database}
           threads: 1
         local:
           type: duckdb
           schema: main
-          path: 'local.duckdb'
+          path: local.duckdb
           threads: 1
       target: dev
     ```
@@ -59,7 +54,7 @@ _In order for `dbt power user` vscode extension to work properly with MotherDuck
 
 ### Adding a Token to Your Environment Variables
 
-#### macOS: Adding a Token to Your Environment Variables
+#### macOS
 
 1. Open the **Terminal**.
 2. Edit your shell profile:

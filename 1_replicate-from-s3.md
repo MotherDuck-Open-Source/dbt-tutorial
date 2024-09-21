@@ -14,13 +14,20 @@ kernelspec:
 
 # 1. Replicating data into MotherDuck from S3
 
-duckdb has the ability to read from S3 directly. We can simply select directly from files with this.
+DuckDB supports reading/writing/globbing files on object storage servers using the S3 API. S3 offers a standard API to read and write to remote files. Furthermore, DuckDB & MotherDuck support Secrets in SQL, so that private buckets can be accessed directly from SQL. In the examples below, we will be using public S3 buckets. To learn more Secret Management, click [here](https://duckdb.org/docs/extensions/httpfs/s3api.html#config-provider).
 
 ```sql
-select * from 's3//:{your-bucket}/file_name.csv'
+SELECT *
+FROM 's3://my-bucket/file.parquet';
 ```
 
-you can find a sample dataset for this on s3...link
+For the purpose of this workshop, some sample datasets can be found `s3://us-prd-motherduck-open-datasets/stocks/`. 
+
+A sample of this dataset can be found here.
+```{code-cell}
+%%dql
+FROM 's3://us-prd-motherduck-open-datasets/stocks/ticker_history_20240920085944.csv' limit 10;
+```
 
 ## Using ReadCSV and set Parameters
 

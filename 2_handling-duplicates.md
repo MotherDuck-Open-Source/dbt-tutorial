@@ -12,7 +12,7 @@ kernelspec:
   name: python3
 ---
 
-# Handling Duplicate Data
+# 2. Handling Duplicate Data
 
 ## The Inevitability of Duplicate Data
 
