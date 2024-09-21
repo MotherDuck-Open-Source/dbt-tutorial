@@ -8,5 +8,5 @@ chapters:
 - file: 1_replicate-from-s3
 - file: 2_handling-duplicates
 - file: 3_sql-variables
-# - file: 4_data-in-the-cloud
-# - file: datasets
+- file: 4_incremental-models
+- file: 5_race-conditions
