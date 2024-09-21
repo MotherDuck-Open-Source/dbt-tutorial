@@ -18,6 +18,6 @@ The models as built thus far can run into race conditions where files are added 
 
 The data flow implied here will look like this:
 
-![Data Flow](../img/data_flow.png)
+![Data Flow](img/data_flow.png)
 
 Because we are materializing our list of files, we can be a bit more sophisticated with how we pass this file inventory into our dbt models.
