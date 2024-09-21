@@ -46,10 +46,12 @@ from read_csv('s3://us-prd-motherduck-open-datasets/stocks/**/ticker_history_*.c
   filename = true)
 ```
 
-Now our raw model has duplicates in it! 
+We can now easily load data from multiple source files into MotherDuck!
 
 ```{admonition} Exercise 2.1
-Create a `prep` folder and update at least one model to pull in even more data from s3.
+Update at least one model to pull in even more data from s3.
+
+hint: consider this type of pattern in your read_csv. _stocks/**/ticker_history_*.csv_
 ```
 
 ## De-duping with a window function
