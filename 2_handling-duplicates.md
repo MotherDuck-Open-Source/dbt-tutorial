@@ -23,21 +23,40 @@ In any data warehouse, the presence of duplicate data is almost inevitable. This
 
 ## Ingesting Additional Data - with some duplicates
 
-we can get add duplicates by updating our file path to X.
+There is multiple datasets in the s3 bucket, partitioned by date. Unfortunately, these datasets are not incremental, so they must be loaded and then deduplicated. We can use the `glob()` function to get a list of files in the s3 bucket.
 
-```sql
-select * from read_csv(dupes)
+Thanks to some jupyter & duckdb magic, we can explore this data right in the notebook.
+
+```{code-cell}
+!pip install --upgrade duckdb magic-duckdb --quiet
+%load_ext magic_duckdb
 ```
 
-Now our raw model has duplicates in it! There is some temptation to handle this de-duplication in this stage. Instead lets add another folder called `prep` that handles the deduplication.
+```{code-cell}
+%%dql
+select * 
+from glob('s3://us-prd-motherduck-open-datasets/stocks/**/*.csv');
+```
 
-Inside this folder, add a new model called `prep_{my_model}.sql`. We can use a traditional de-duplication method here - window functions.
+To create a dbt model with duplicates, we can use this same path, like this:
+
+```sql
+select *
+from read_csv('s3://us-prd-motherduck-open-datasets/stocks/**/ticker_history_*.csv',
+  filename = true)
+```
+
+Now our raw model has duplicates in it! 
 
 ```{admonition} Exercise 2.1
 Create a `prep` folder and update at least one model to pull in even more data from s3.
 ```
 
 ## De-duping with a window function
+
+There is some temptation to handle this de-duplication in this stage. Instead lets add another folder called `prep` that handles the deduplication.
+
+Inside this folder, add a new model called `prep_{my_model}.sql`. We can use a traditional de-duplication method here - window functions.
 
 Most Modern OLAP databases support `QUALIFY`, which is SQL Syntax sugar that allows you to filter the results of a window function directly in the query. This can be particularly useful for de-duplication. Here is an example of how you might use `QUALIFY` to remove duplicates:
 
