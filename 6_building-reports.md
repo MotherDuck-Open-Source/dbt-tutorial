@@ -29,7 +29,9 @@ In general, I've found it is better to do full table rebuilds in your final laye
 In this case, we are going to serve data into `plotly` and `dash`, and the data set is very small. So using views is totally fine to get nice performance in the serving layer.
 
 ```{admonition} Exercise 6.1
-Do some exploratory analysis on your dataset using the MotherDuck UI and write a query of market cap over time by company.
+Inspect your dataset using the Column Explorer in the MotherDuck UI. Write a query of Market Cap over time by Company.
+
+hint: Market Cap = Issued Shares X Stock Price
 ```
 
 ```{admonition} Exercise 6.2
