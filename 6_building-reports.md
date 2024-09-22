@@ -31,7 +31,7 @@ In this case, we are going to serve data into `plotly` and `dash`, and the data 
 ```{admonition} Exercise 6.1
 Inspect your dataset using the Column Explorer in the MotherDuck UI. Write a query of Market Cap over time by Company.
 
-hint: Market Cap = Issued Shares X Stock Price
+hint: Market Cap = Shares Outstanding X Stock Price
 ```
 
 ```{admonition} Exercise 6.2
