@@ -21,13 +21,27 @@ SELECT *
 FROM 's3://my-bucket/file.parquet';
 ```
 
-For the purpose of this workshop, some sample datasets can be found `s3://us-prd-motherduck-open-datasets/stocks/`. 
+For the purpose of this workshop, some sample datasets can be found `s3://us-prd-motherduck-open-datasets/stocks/`: 
 
 ```sql
 select *
 from read_csv('s3://us-prd-motherduck-open-datasets/stocks/ticker_history_20240920085944.csv')
 limit 10;
+
+select *
+from read_csv('s3://us-prd-motherduck-open-datasets/stocks/option_history_20240920085942.csv')
+limit 10;
+
+select *
+from read_csv('s3://us-prd-motherduck-open-datasets/stocks/ticker_info_20240920085933.csv')
+limit 10;
 ```
+
+```{admonition} Warm-up exercise
+Navigate to your project root directory and run `./duckdb` to start DuckDB.
+Copy-paste the above SQL query and inspect the result.
+```
+
 
 ## Using ReadCSV and set Parameters
 

@@ -79,5 +79,5 @@ from read_csv('s3://us-prd-motherduck-open-datasets/stocks/**/ticker_info_*.csv'
 ```
 
 ```{admonition} Exercise 4.1
-Build an incremental model on top the data in your S3 bucket.
+Update your model `ticker_info.sql` to be an incremental model instead.
 ```

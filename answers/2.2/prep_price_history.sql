@@ -1,4 +1,4 @@
-select UNNEST(ARG_MAX(ph,"filename")) 
+select UNNEST(ARG_MAX(ph,'filename')) 
 from {{ ref( 'price_history')}} as ph
 group by symbol, "date"
 
