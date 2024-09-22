@@ -47,7 +47,7 @@ Then we can use that list in sql query.
 
 ```sql
 select *
-from read_csv(getvariable(my_list), filename = true) as model
+from read_csv(getvariable('my_list'), filename = true) as model
 {% if is_incremental() %}
     where model.filename 
         not in (select distinct filename 
