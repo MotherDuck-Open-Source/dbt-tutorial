@@ -84,3 +84,7 @@ Implement ARG_MAX() on top of your models in the `prep` folder.
 hint: you will need to find a way to get the timestamp from the filename (or use the `read_blob()` function to enrich your dataset.)
 ```
 
+```{admonition} Exercise 2.3
+Add dbt tests to your `schema.yml` file that tests for uniqueness on each model.
+```
+

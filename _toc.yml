@@ -10,3 +10,7 @@ chapters:
 - file: 3_sql-variables
 - file: 4_incremental-models
 - file: 5_race-conditions
+- file: 6_building-reports
+- file: 7_data-viz
+- file: futher-reading
+

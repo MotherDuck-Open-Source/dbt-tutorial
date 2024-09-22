@@ -25,3 +25,15 @@ Because we are materializing our list of files, we can be a bit more sophisticat
 ```{admonition} Exercise 5.1
 Build a dbt model that gets all files from an s3 path, applies some categorization, and persists the timestamp.
 ```
+
+## Referencing our files model from our other models
+
+Now that we have a list of files with some meta-data, we can re-implement our models that are load data from S3 to be fully incremental. In order to do this, we want to:
+
+1. Create a list of all files that match certain meta-data filters in a `pre_hook`.
+2. Pass that list to a `read_csv()` function so that DuckDB knows which files to process.
+3. Make sure the `is_incremental` bits and the `unique_key` match your desired behavior.
+
+```{admonition} Exercise 5.2
+Update all of your raw models to build incrementally
+```
