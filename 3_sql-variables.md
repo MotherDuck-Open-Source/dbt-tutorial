@@ -24,7 +24,7 @@ DuckDB 1.1 has introduced a new set of features of around variables, which allow
 Consider how the following SQL statement would resolve:
 
 ```sql
-SET VARIABLE today = SELECT (NOW() AT TIMEZONE 'UTC')::date;
+SET VARIABLE today = (SELECT (NOW() AT TIME ZONE 'UTC')::date);
 
 SELECT SUM(amount) as sales_amt
 FROM fact_sales
