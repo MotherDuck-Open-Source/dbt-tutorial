@@ -28,7 +28,7 @@ To get started with the tutorial, you'll need a GitHub Codespace. The template c
 6. After it loads completely, _reload the window_ in order to make sure the dbt power user extension has access to your md environment.
     - python dependencies are added in a post create hook, and a 2-core codespace can be quite slow.
 7. run `dbt init` to create your dbt project. Create a new project called `my_project`, or use your preferred name.
-8. Navigate to your project directory and add this `profiles.yml` file to the root of your dbt project. This will be the folder that create in the previous step.
+8. Navigate to the folder created in step 7 (e.g. `my_project`) and add this `profiles.yml` file. This will be the folder that create in the previous step.
 
     ```yml
     # replace "my_project" with the name that matches the project name in step 7.
@@ -46,7 +46,7 @@ To get started with the tutorial, you'll need a GitHub Codespace. The template c
           threads: 1
       target: dev
     ```
-9.  Navigate to the folder created in step 7 (e.g. `my_project`) and run `dbt debug` to validate that your setup is correct.
+9.  run `dbt debug` to validate that your setup is correct.
     - note: you will need to be in the same directory as your `dbt_project.yml` file.
 
 ## Alternative setup
