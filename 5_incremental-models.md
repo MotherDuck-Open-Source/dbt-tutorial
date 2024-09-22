@@ -12,7 +12,7 @@ kernelspec:
   name: python3
 ---
 
-# 4. Handling even larger data sets
+# 5. Handling even larger data sets
 
 So far in this workshop, every `dbt build` would rebuild all models from S3 from the underlying data. While this is fine for very small data sets, length of time it takes to run any suitable large model (say in the range of a few million rows) across hundreds or thousands of files. How do we make this _just work_?
 
@@ -78,6 +78,6 @@ from read_csv('s3://us-prd-motherduck-open-datasets/stocks/**/ticker_info_*.csv'
 {% endif %}
 ```
 
-```{admonition} Exercise 4.1
+```{admonition} Exercise 5.1
 Update your model `ticker_info.sql` to be an incremental model instead.
 ```

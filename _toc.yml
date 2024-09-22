@@ -8,8 +8,8 @@ chapters:
 - file: 1_replicate-from-s3
 - file: 2_handling-duplicates
 - file: 3_sql-variables
-- file: 4_incremental-models
-- file: 5_race-conditions
+- file: 4_race-conditions
+- file: 5_incremental-models
 - file: 6_building-reports
 - file: 7_data-viz
 - file: 8_futher-reading
