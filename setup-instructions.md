@@ -20,11 +20,12 @@ To get started with the tutorial, you'll need a GitHub Codespace. The template c
 
 1. Create a MotherDuck account.
 2. Create a database inside of MotherDuck. This can be done with the command `create database {my_database};` from the MotherDuck UI.
-3. Fork the `dbt-tutorial-template` repo in GitHub.
+3. Fork the [`dbt-tutorial-template`](https://github.com/MotherDuck-Open-Source/dbt-tutorial-template) repo in GitHub.
 4. Generate an access token inside of MotherDuck and add it as a codespace secret inside of GitHub.
     - note: it is important that this token is called `MOTHERDUCK_TOKEN` so that it can be read by the MotherDuck DuckDB extension.
 5. Open a codespace on your forked repo.
 6. After it loads completely, _reload the window_ in order to make sure the dbt power user extension has access to your md environment.
+   - python dependencies are added in a post create hook, and a 2-core codespace can be quite slow.
 7. run `dbt init` to create your dbt project.
 8. add this `profiles.yml` file to the root of your dbt project. This will be the folder that create in the previous step.
 
@@ -44,7 +45,7 @@ To get started with the tutorial, you'll need a GitHub Codespace. The template c
           threads: 1
       target: dev
     ```
-1. run `dbt debug` to validate that your setup is correct.
+9.  run `dbt debug` to validate that your setup is correct.
 
 ## Alternative setup
 
