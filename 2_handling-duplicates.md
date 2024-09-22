@@ -54,6 +54,18 @@ Update at least one model to pull in even more data from s3 and add the filename
 hint: consider this type of pattern in your read_csv: stocks/**/ticker_history_*.csv
 ```
 
+## Linking models with dbt ref
+
+One of the core dbt abstraction is [`ref`](https://docs.getdbt.com/reference/dbt-jinja-functions/ref). This function allows you to dynmically link models together. You can do this very simply, for example:
+
+```sql
+select * from {{ ref( "option_history" ) }}
+```
+
+This simple bit of linking means that:
+1. "option history" will run before this query.
+2. we can define materialization at the model level, which can really matter for performance.
+
 ## De-duping with a window function
 
 There is some temptation to handle this de-duplication in this stage. Instead lets add another folder called `prep` that handles the deduplication.
