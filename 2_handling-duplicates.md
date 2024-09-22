@@ -49,7 +49,7 @@ from read_csv('s3://us-prd-motherduck-open-datasets/stocks/**/ticker_history_*.c
 We can now easily load data from multiple source files into MotherDuck!
 
 ```{admonition} Exercise 2.1
-Update at least one model to pull in even more data from s3.
+Update at least one model to pull in even more data from s3 and add the filename as column.
 
 hint: consider this type of pattern in your read_csv: stocks/**/ticker_history_*.csv
 ```
@@ -80,8 +80,6 @@ DuckDB contains a function called [ARG_MAX()](https://duckdb.org/docs/sql/functi
 
 ```{admonition} Exercise 2.2
 Implement ARG_MAX() on top of your models in the `prep` folder.
-
-hint: you will need to find a way to get the timestamp from the filename (or use the `read_blob()` function to enrich your dataset.)
 ```
 
 ```{admonition} Exercise 2.3

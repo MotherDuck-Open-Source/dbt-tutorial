@@ -1,0 +1,18 @@
+version: 2
+
+models:
+  - name: dim_companies
+    columns:
+      - name: symbol
+        data_tests:
+          - unique
+  - name: fact_options
+    columns:
+      - name: contractSymbol
+        data_tests:
+          - unique
+  - name: fact_stock_prices
+    columns:
+      - name: id
+        data_tests:
+          - unique

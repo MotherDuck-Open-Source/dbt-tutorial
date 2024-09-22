@@ -83,4 +83,6 @@ Create a model for each file in the `stocks` S3 bucket.
 
 ```{admonition} Exercise 1.2
 Write a query using MotherDuck to select the 10 latest rows in the `ticker_history` file for symbol AAPL.
+
+**extra credit**: write the same query against your dbt models, instead of S3.
 ```

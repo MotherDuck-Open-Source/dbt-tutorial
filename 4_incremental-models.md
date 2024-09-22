@@ -55,18 +55,13 @@ from read_csv(getvariable(my_list), filename = true) as model
 {% endif %}
 ```
 
-This also introduces the concept of `{{ this }}`, which is a dbt relation and allows us to reference the the current model. In order to get the SQL variable `my_list` in the context for the subsequent query, we have to also invoke it with a [`pre_hook`](https://docs.getdbt.com/reference/resource-configs/pre-hook-post-hook). A `pre_hook` is simply a SQL statement that is executed before the model runs, while a `post_hook` runs immediately after. 
+This also introduces the concept of `{{ this }}`, which is a dbt relation and allows us to reference the the current model.
 
 The full model, including the config, looks something like this:
 
 ```sql
 {{
     config(
-        pre_hook="""
-            set variable my_list = (
-                select array_agg(file) from {{ ref('files') }} where entity = 'ticker_info'
-            )
-        """,
         materialized="incremental",
         unique_key="id",
     )
@@ -76,7 +71,8 @@ select
     info.symbol || '-' || info.filename as id,
     info.*,
     now() at time zone 'UTC' as updated_at
-from read_csv(getvariable(my_list), filename = true) as info
+from read_csv('s3://us-prd-motherduck-open-datasets/stocks/**/ticker_info_*.csv',
+    filename = true) as info
 {% if is_incremental() %}
     where not exists (select 1 from {{ this }} ck where ck.filename = info.filename)
 {% endif %}

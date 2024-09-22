@@ -34,6 +34,9 @@ Now that we have a list of files with some meta-data, we can re-implement our mo
 2. Pass that list to a `read_csv()` function so that DuckDB knows which files to process.
 3. Make sure the `is_incremental` bits and the `unique_key` match your desired behavior.
 
+### Pre-hooks in two sentences
+In order to get the SQL variable `my_list` in the context for the subsequent query, we have to also invoke it with a [`pre_hook`](https://docs.getdbt.com/reference/resource-configs/pre-hook-post-hook). A `pre_hook` is simply a SQL statement that is executed before the model runs, while a `post_hook` runs immediately after. 
+
 ```{admonition} Exercise 5.2
 Update all of your raw models to build incrementally.
 ```
