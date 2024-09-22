@@ -29,6 +29,12 @@ from read_csv('s3://us-prd-motherduck-open-datasets/stocks/ticker_history_202409
 limit 10;
 ```
 
+```{admonition} Warm-up exercise
+Navigate to your project root directory and run `./duckdb` to start DuckDB.
+Copy-paste the above SQL query and inspect the result.
+```
+
+
 ## Using ReadCSV and set Parameters
 
 Duckdb contains a set of [CSV functions](https://duckdb.org/docs/data/csv/overview#csv-functions) that are used to handle CSV files.
