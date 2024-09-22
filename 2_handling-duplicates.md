@@ -56,7 +56,7 @@ hint: consider this type of pattern in your read_csv: stocks/**/ticker_history_*
 
 ## De-duping with a window function
 
-There is some temptation to handle this de-duplication in this stage. Instead lets add another folder called `prep` that handles the deduplication.
+There is some temptation to handle this de-duplication in this stage. Instead lets add another folder in your `modules` folder called `prep` that handles the deduplication.
 
 Inside this folder, add a new model called `prep_{my_model}.sql`. We can use a traditional de-duplication method here - window functions.
 
