@@ -35,5 +35,5 @@ Now that we have a list of files with some meta-data, we can re-implement our mo
 3. Make sure the `is_incremental` bits and the `unique_key` match your desired behavior.
 
 ```{admonition} Exercise 5.2
-Update all of your raw models to build incrementally
+Update all of your raw models to build incrementally.
 ```

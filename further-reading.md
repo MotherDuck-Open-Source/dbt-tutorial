@@ -14,4 +14,10 @@ kernelspec:
 
 # Futher Reading
 
-abc
+## Sharing Data in MotherDuck
+ - link to shares
+
+## Other notes about DuckDB as a data warehouse
+
+## ARG_MAX() - Why is it so fast?
+link to the stuff from Alex
