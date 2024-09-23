@@ -25,3 +25,4 @@ The short answer is that is it an implementation of [Radix sort](https://duckdb.
 ## Other notes about DuckDB as a data warehouse
 
 - [advanced dbt tips](https://docs.getdbt.com/docs/build/dbt-tips)
+- [transforming and partitioning data into parquet with dbt](https://github.com/mehd-io/pypi-duck-flow/blob/main/transform/pypi_metrics/macros/export_partition_data.sql)
