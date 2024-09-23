@@ -42,6 +42,8 @@ Since the SQL interface is somewhat trivial, the rest of the work in python is t
 
 An example script can be [found here](https://github.com/matsonj/stocks/blob/main/viz/line_chart.py).
 
+I've built out a end-to-end repo that extracts, loads, de-duplicates, and models this dataset [over here](https://github.com/matsonj/stocks).
+
 ```{admonition} Extra Credit
 Ship the result chart using GitHub pages. Then set up a GitHub action to run every 5 minutes and update with the latest stock price and publish the changes to your MotherDuck database.
 ```
