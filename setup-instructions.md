@@ -18,7 +18,7 @@ To get started with the tutorial, we recommend a GitHub Codespace. The template 
 
 If you feel like using your own local environment or another IDE, take a look at the [`Makefile`](https://github.com/MotherDuck-Open-Source/dbt-tutorial-template/blob/main/Makefile) in the template repo.
 
-For extra support, please join us at [slack.motherduck.com](https://slack.motherduck.com) in the [#smalldata-2024 channel](https://motherduckcommunity.slack.com/archives/C07N7EDJL3H).
+For support during the workshop, please join us at [slack.motherduck.com](https://slack.motherduck.com) in the [#smalldata-2024 channel](https://motherduckcommunity.slack.com/archives/C07N7EDJL3H).
 
 ## Getting Started with Codespaces
 
