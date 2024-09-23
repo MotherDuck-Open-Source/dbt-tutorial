@@ -23,7 +23,7 @@ The data flow will look like this:
 Because we are materializing our list of files, we can be a bit more sophisticated with how we pass this file inventory into our dbt models, for example, we can now categorize our files and persist some meta-data, like modified timestamps. While typically files in object storage are treated as write once, if the file timestamp updates, we may also want to handle that as an incremental update.
 
 ```{admonition} Exercise 4.1
-Build a dbt model that gets all files from an s3 path, applies some categorization, and persists the timestamp.
+Build a dbt model that gets all files from an s3 path, categorizes each file to a specific tabular entity, and persists the timestamp.
 ```
 
 ## Referencing our files model from our other models
@@ -38,5 +38,5 @@ Now that we have a list of files with some meta-data, we can re-implement our mo
 In order to get the SQL variable `my_list` in the context for the subsequent query, we have to also invoke it with a [`pre_hook`](https://docs.getdbt.com/reference/resource-configs/pre-hook-post-hook). A `pre_hook` is simply a SQL statement that is executed before the model runs, while a `post_hook` runs immediately after. 
 
 ```{admonition} Exercise 4.2
-Update all of your raw models to build incrementally.
+Create and run a dbt model with a pre_hook that populates a list, then return that list in the body of the model.
 ```
