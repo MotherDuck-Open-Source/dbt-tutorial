@@ -14,7 +14,18 @@ kernelspec:
 
 # Setup instructions
 
-To get started with the tutorial, you'll need a GitHub Codespace. The template can be found at [MotherDuck-Open-Source/dbt-tutorial-template](https://github.com/MotherDuck-Open-Source/dbt-tutorial-template).
+To get started with the tutorial, we recommend a GitHub Codespace. The template can be found at [MotherDuck-Open-Source/dbt-tutorial-template](https://github.com/MotherDuck-Open-Source/dbt-tutorial-template).
+
+If you feel like using your own local environment or another IDE, take a look at the `Makefile` in the template repo:
+
+```Makefile
+build:
+	pip install --upgrade pip
+	pip install -r [requirements.txt](https://github.com/MotherDuck-Open-Source/dbt-tutorial-template/blob/main/requirements.txt)
+	wget https://github.com/duckdb/duckdb/releases/download/v1.1.0/duckdb_cli-linux-amd64.zip
+	unzip duckdb_cli-linux-amd64.zip
+	rm duckdb_cli-linux-amd64.zip
+```
 
 ## Getting Started
 
