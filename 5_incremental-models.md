@@ -14,7 +14,7 @@ kernelspec:
 
 # 5. Handling even larger data sets
 
-So far in this workshop, every `dbt build` would rebuild all models from S3 from the underlying data. While this is fine for very small data sets, length of time it takes to run any suitable large model (say in the range of a few million rows) across hundreds or thousands of files. How do we make this _just work_?
+So far in this workshop, every `dbt build` would rebuild all models from S3 from the underlying data. While this is fine for very small data sets, the length of time it takes to run any suitable large model (say in the range of a few million rows) across hundreds or thousands of files is far too long, and can use a ton of memory to handle. How do we make this _just work_?
 
 ## dbt incremental materializations
 
@@ -35,7 +35,7 @@ You can read more about this in the [dbt docs](https://docs.getdbt.com/docs/buil
 
 ## Example of incremental materialization
 
-In the previous example, we pulled a list of files from S3 and returned it as a list. Using this same method, we can pass that list to a `read_csv()` function and ingest all of those files. We can then use that in CTE (or sub-query) to filter our data set for incremental loading.
+In previous examples, we pulled a list of files from S3 and returned it as a list. Using this same method, we can pass that list to a `read_csv()` function and ingest all of those files. We can then use that in CTE (or sub-query) to filter our data set for incremental loading.
 
 ```sql
 SET VARIABLE my_list =
@@ -80,4 +80,8 @@ from read_csv('s3://us-prd-motherduck-open-datasets/stocks/**/ticker_info_*.csv'
 
 ```{admonition} Exercise 5.1
 Update your model `ticker_info.sql` to be an incremental model instead.
+```
+
+```{admonition} Exercise 5.2
+Now update `ticker_history.sql` and `option_history.sql` to be incremental as well. 
 ```

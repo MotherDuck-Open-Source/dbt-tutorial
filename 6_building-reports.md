@@ -16,11 +16,11 @@ kernelspec:
 
 Now that we have a nice set of data, the next step is to create usable analytics. Ideally, if we have done enough work in the prep stage, doing the analysis that we want is fairly easy. dbt doesn't take a position in terms _how_ you should model your data, so approaches from Kimball or Inmon or others are all just fine. 
 
-Regardless of how you think about how your data matures through your transformation layer, it is important to keep it well organized. In the case of this project, its recommended to create a `models/reporting` folder to keep your final analysis. As this matures, it can be split into domain specific areas, for example. Because dbt is so flexible, it less important to follow a prescribed pattern and more important to have a repeatable approach that scales as the analytics needs of your organization grows.
+Regardless of how you think about how your data matures through your transformation layer, it is important to keep it well organized. In the case of this project, I that you recommended create a `models/reporting` folder to keep your final analysis. As this matures, it can be split into domain specific areas, for example. Because dbt is so flexible, it less important to follow a prescribed pattern and more important to have a repeatable approach that scales as the analytics needs of your organization grows.
 
 ## Metrics?
 
-We aren't going to spend much time talking about Metrics in this workshop. Obviously, solutions abound in this space! But it seems like market has not yet settled into what the pattern will be like here longer term. It is made more complex by the current BI market leaders (Salesforce/Tableau and Microsoft/Power BI) having their own suggested patterns for metrics! 
+We aren't going to spend much time talking about Metrics in this workshop. Obviously, solutions abound in this space! But it seems like market has not yet settled into what the pattern will be like here longer term. It is made more complex by the current BI market leaders (Salesforce/Tableau and Microsoft/Power BI) having their own highly capable solutions for metrics! 
 
 ## Materialization in the reporting layer
 
@@ -31,7 +31,9 @@ In this case, we are going to serve data into `plotly` and `dash`, and the data 
 ```{admonition} Exercise 6.1
 Inspect your dataset using the Column Explorer in the MotherDuck UI. Write a query of Market Cap over time by Company.
 
-hint: Market Cap = Shares Outstanding X Stock Price
+hint: Market Cap = Shares Outstanding X Stock Price.
+- Shares Outstanding can be found in the "ticker info" model.
+- Stock Price by Day can be found in the "ticker history" model.
 ```
 
 ```{admonition} Exercise 6.2

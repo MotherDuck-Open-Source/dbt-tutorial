@@ -34,7 +34,7 @@ conn = duckdb.connect(f'md:?MOTHERDUCK_TOKEN={MOTHERDUCK_TOKEN}')
 market_cap_df = conn.execute(f'''
     SELECT Date, market_cap
     FROM stocks_dev.main.market_cap_by_day
-    WHERE symbol = '{selected_symbol}'
+    WHERE symbol = 'AAPL'
 ''').df()
 ```
 

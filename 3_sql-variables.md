@@ -48,6 +48,6 @@ Use MotherDuck to get a list of all files in your S3 Bucket.
 ```
 
 ```{admonition} Exercise 3.2
-Set your list as a variable, then print the list with a `SELECT` query.
+Set the list from Exercise 3.1 as a variable, then print the list with a `SELECT` query.
 ```
 

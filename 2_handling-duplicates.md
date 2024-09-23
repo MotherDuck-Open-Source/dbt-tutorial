@@ -23,7 +23,7 @@ In any data warehouse, the presence of duplicate data is almost inevitable. This
 
 ## Ingesting Additional Data - with some duplicates
 
-There is multiple datasets in the s3 bucket, partitioned by date. Unfortunately, these datasets are not incremental, so they must be loaded and then deduplicated. We can use the `glob()` function to get a list of files in the s3 bucket.
+There is multiple datasets in the s3 bucket, partitioned by date fetched. Unfortunately, these datasets are not incremental, so they must be loaded and then deduplicated. Thankfully, DuckDB supports reading multiple files with "glob syntax". You can learn [more about it here](https://duckdb.org/docs/data/multiple_files/overview.html). We can use this "glob syntax" + the `glob()` function to get a list of files in the s3 bucket. The `glob()` function returns a list of files that match the specified pattern.
 
 Thanks to some jupyter & duckdb magic, we can explore this data right in the notebook.
 
@@ -35,10 +35,10 @@ Thanks to some jupyter & duckdb magic, we can explore this data right in the not
 ```{code-cell}
 %%dql
 select * 
-from glob('s3://us-prd-motherduck-open-datasets/stocks/**/*.csv');
+from glob('s3://us-prd-motherduck-open-datasets/stocks/**/ticker_info*.csv');
 ```
 
-To create a dbt model with duplicates, we can use this same path, like this:
+Armed with this knowledge, we can use this same path pattern to create a model that loads all in all of `ticker_history`, with some duplication:
 
 ```sql
 select *
@@ -49,9 +49,9 @@ from read_csv('s3://us-prd-motherduck-open-datasets/stocks/**/ticker_history_*.c
 We can now easily load data from multiple source files into MotherDuck!
 
 ```{admonition} Exercise 2.1
-Update at least one model to pull in even more data from s3 and add the filename as column.
+Update your dbt models to pull in even more data using the glob syntax and add the filename as column.
 
-hint: consider this type of pattern in your read_csv: stocks/**/ticker_history_*.csv
+Hint: consider this type of pattern in your read_csv: stocks/**/ticker_history_*.csv
 ```
 
 ## Linking models with dbt ref
@@ -70,16 +70,16 @@ This simple bit of linking means that:
 
 There is some temptation to handle this de-duplication in this stage. Instead lets add another folder in your `modules` folder called `prep` that handles the deduplication.
 
-Inside this folder, add a new model called `prep_{my_model}.sql`. We can use a traditional de-duplication method here - window functions.
+Inside this folder, add a new model called `prep_ticker_info.sql`. We can use a traditional de-duplication method here - window functions.
 
 Most Modern OLAP databases support `QUALIFY`, which is SQL Syntax sugar that allows you to filter the results of a window function directly in the query. This can be particularly useful for de-duplication. Here is an example of how you might use `QUALIFY` to remove duplicates:
 
 ```sql
 SELECT
   *,
-  ROW_NUMBER() OVER (PARTITION BY unique_key ORDER BY created_at DESC) AS row_num
+  ROW_NUMBER() OVER (PARTITION BY symbol ORDER BY "filename" DESC) AS row_num
 FROM
-  raw_data
+  ticker_info
 QUALIFY
   row_num = 1;
 ```
@@ -90,11 +90,41 @@ In this example, we partition the data by a unique key and order it by a timesta
 
 DuckDB contains a function called [ARG_MAX()](https://duckdb.org/docs/sql/functions/aggregates.html#arg_maxarg-val), which allows users to pass a table reference and a numeric column (including dates & timestamps) and returns a single row as a [`STRUCT`](https://www.w3schools.com/c/c_structs.php). Since it returns this datatype, we have to also use [`UNNEST()`](https://duckdb.org/docs/sql/query_syntax/unnest.html) in order to get a single row from the `ARG_MAX()` function.
 
+## Why is ARG_MAX() so fast?
+
+The short answer is that ARG_MAX() uses Radix sort, which leverages SQL `group by` to identify the groups in which to find the max. The time complexity of Radix sort is _O (n k)_, where as comparison- based sorting algorithms have _O (n_ log _n)_ time complexity. 
+
 ```{admonition} Exercise 2.2
 Implement ARG_MAX() on top of your models in the `prep` folder.
+
+As a starter, here is a runable query from the MotherDuck UI (or CLI):
+select UNNEST(ARG_MAX(ticker_history,"filename")) 
+from (select *
+from read_csv('s3://us-prd-motherduck-open-datasets/stocks/**/ticker_history_*.csv',
+    filename = true)) as ticker_history
+group by symbol, "date";
+```
+
+## Enforcing Uniqueness
+
+In OLTP databases, we can enforce uniquness with `constraints` such as Primary Key. In OLAP, this behavior is often undesired, since we are often versioning records over time, or treating tables as append only (among other use cases). dbt has built functionality called ["data tests"](https://docs.getdbt.com/docs/build/data-tests) which allow us to check certain conditions after a model is built. There are is handful of out-of-the-box tests, including `unique` which assures the count of each key in a dataset is 1. By default, these tests fail if more than 0 rows are returned in the test query. These tests interact with a the DAG generated by dbt in a few ways.
+- When running `dbt build`, failed tests will skip any downstream models.
+- When running `dbt run`, tests are ignored. (Editor's note: I prefer not to use `dbt run` as a result but it can be unavoidable in larger DAGs)
+- When running `dbt test`, only the tests are invoked.
+
+Tests can be added in various ways, but the easiest way to get started with them is to create a `schema.yml` file that contains table definitions, which is a great place to also add tests. See the example below.
+
+```yaml
+version: 2
+
+models:
+  - name: prep_ticker_info
+    columns:
+      - name: symbol
+        data_tests:
+          - unique
 ```
 
 ```{admonition} Exercise 2.3
 Add dbt tests to your `schema.yml` file that tests for uniqueness on each model.
 ```
-

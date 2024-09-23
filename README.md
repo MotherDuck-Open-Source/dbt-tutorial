@@ -18,9 +18,11 @@ In this tutorial, we will explore how to build an efficient data warehousing sol
 
 ## Tutorial overview
 
-This tutorial will explore strategies for using dbt for data loading in addition to transformation. In addition, it will use plotly dash to serve some analytics directly from MotherDuck in the browser.
+This tutorial will explore a pattern for using dbt for data loading in addition to transformation. A high level overview of the pattern can be seen below:
 
 ![Data Flow](img/data_flow.png)
+
+In addition, it will use plotly dash to serve some analytics directly from MotherDuck in the browser.
 
 ## What is dbt?
 

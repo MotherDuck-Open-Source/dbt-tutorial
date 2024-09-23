@@ -27,7 +27,7 @@ If you feel like using your own local environment or another IDE, take a look at
 4. Open a codespace on your forked repo by clicking the big green "code" button your repo.
     - note: codespaces do not work on Safari. Use Chrome, Edge or Visual Studio Code.
 5. After it loads completely, _reload the window_ in order to make sure the dbt power user extension has access to your md environment.
-    - python dependencies are added in a post create hook, and a 2-core codespace can be quite slow.
+    - python dependencies are added in a post create hook, and the default 2-core codespace is quite slow.
 6. run `dbt init` to create your dbt project. Create a new project called `my_project`, or use your preferred name.
 7. Navigate to the folder created in step 7 (e.g. `my_project`) and add this `profiles.yml` file. This will be the folder that create in the previous step.
 

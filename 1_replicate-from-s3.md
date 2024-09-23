@@ -53,14 +53,6 @@ Additionally, the `read_csv()` function supports some parameters that are useful
 - `union_by_name` (default value `false`) which attempts to match column names across multiple CSVs.
 - `filename` (default value `false`) which will add a column with the file name to the tabular data set returned in the `from` clause.
 
-## Models in dbt
-
-SQL queries in dbt are called "models". 
-
-[From the dbt website](https://docs.getdbt.com/docs/build/models):
-
-> Models are where your developers spend most of their time within a dbt environment. Models are primarily written as a `select` statement and saved as a `.sql` file. While the definition is straightforward, the complexity of the execution will vary from environment to environment. Models will be written and rewritten as needs evolve and your organization finds new ways to maximize efficiency.
-
 ## Reading other file types
 
 In addition to reading CSV files, DuckDB can read [many other file types](https://duckdb.org/docs/guides/file_formats/overview):
@@ -75,21 +67,31 @@ In addition to reading CSV files, DuckDB can read [many other file types](https:
 
 It can also read list of files and file meta-data with the `glob()` and [`read_text()`](https://duckdb.org/docs/guides/file_formats/read_file) functions.
 
+## Models in dbt
+
+SQL queries in dbt are called "models". 
+
+[From the dbt website](https://docs.getdbt.com/docs/build/models):
+
+> Models are where your developers spend most of their time within a dbt environment. Models are primarily written as a `select` statement and saved as a `.sql` file. While the definition is straightforward, the complexity of the execution will vary from environment to environment. Models will be written and rewritten as needs evolve and your organization finds new ways to maximize efficiency.
+
 ## Building your first dbt model
 
-You can add a model to dbt in your `/models/raw` folder. Create a new file called `{my_file}.sql`.
+You can add a model to dbt in your `/models/raw` folder. Create a new file called `ticker_info.sql`.
 
 ```sql
-select * from read_csv('s3//:{blablah}/my_file_*.csv', filename = true)
+select * 
+from read_csv('s3://us-prd-motherduck-open-datasets/stocks/ticker_info_20240920085933.csv',
+  filename = true)
 ```
 
 Once you have added the model, we have a couple options here.
 1. Press `Cmd+Enter` to run the sql query against motherduck directly from vs code. (Ctrl+Enter on Windows)
 2. Run the same query in duckdb CLI or MotherDuck UI.
    
-Now that your model is confirmed as runnable, you can run `dbt build` from your terminal.
+Now that your model is confirmed as runnable, you can run [`dbt build`](https://docs.getdbt.com/reference/commands/build) from your terminal.
 
-Once this has been completed, check back into the MotherDuck UI - you should see your model. You can then run a simple select against it - `select * from my_model`.
+Once this has been completed, check back into the MotherDuck UI - you should see your model. You can then run a simple select against it - `select * from ticker_info`.
 
 ```{admonition} Exercise 1.1
 Create a model for each file in the `stocks` S3 bucket.
