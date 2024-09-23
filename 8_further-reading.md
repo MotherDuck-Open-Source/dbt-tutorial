@@ -15,9 +15,13 @@ kernelspec:
 # 8. Futher Reading
 
 ## Sharing Data in MotherDuck
- - link to shares
+In order to run a data warehouse in production with Motherduck, it is important to understand how "database sharing" works. You can [learn more here](https://motherduck.com/docs/key-tasks/sharing-data/managing-shares/).
 
-## ARG_MAX() - Why is it so fast?
-link to the stuff from Alex
+## Arg_max() - Why is it so fast?
+
+The short answer is that is it an implementation of [Radix sort](https://duckdb.org/2021/08/27/external-sorting.html#radix-sort). From Wikipedia:
+> In computer science, radix sort is a non-comparative sorting algorithm. It avoids comparison by creating and distributing elements into buckets according to their radix.
 
 ## Other notes about DuckDB as a data warehouse
+
+- [advanced dbt tips](https://docs.getdbt.com/docs/build/dbt-tips)
