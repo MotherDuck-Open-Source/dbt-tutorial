@@ -12,7 +12,7 @@ kernelspec:
   name: python3
 ---
 
-# Effecient Data Warehousing with MotherDuck, DuckDB & dbt
+# Efficient Data Warehousing with MotherDuck, DuckDB & dbt
 
 In this tutorial, we will explore how to build an efficient data warehousing solution using [MotherDuck](www.motherduck.com), [DuckDB](www.duckdb.com), and [dbt](www.getdbt.com). These tools together provide a powerful and flexible environment for managing and analyzing large datasets. You will learn how to set up your data warehouse, integrate it with dbt for data transformations, and leverage DuckDB for fast, in-memory analytics.
 
